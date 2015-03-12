@@ -11,12 +11,13 @@ WGET='wget -nv --no-check-certificate'
 
 # pagespeed module
 cd $BUILDDIR
-$WGET https://github.com/pagespeed/ngx_pagespeed/archive/release-1.7.30.4-beta.zip || (echo "download failed"; exit 1)
-unzip release-1.7.30.4-beta.zip
-mv ngx_pagespeed-release-1.7.30.4-beta pagespeed
+NPS_VERSION=1.9.32.3
+$WGET https://github.com/pagespeed/ngx_pagespeed/archive/release-${NPS_VERSION}-beta.zip || (echo "download failed"; exit 1)
+unzip release-${NPS_VERSION}-beta.zip
+mv ngx_pagespeed-release-${NPS_VERSION}-beta pagespeed
 cd pagespeed/
-$WGET https://dl.google.com/dl/page-speed/psol/1.7.30.4.tar.gz || (echo "download failed"; exit 1)
-tar -xzvf 1.7.30.4.tar.gz # expands to psol/
+$WGET https://dl.google.com/dl/page-speed/psol/${NPS_VERSION}.tar.gz || (echo "download failed"; exit 1)
+tar -xzvf ${NPS_VERSION}.tar.gz # expands to psol/
 
 # headers more module
 cd $BUILDDIR
@@ -30,7 +31,7 @@ chown -R root:root $BUILDDIR
 # build nginx
 mkdir -p $BUILDDIR/nginx
 cd $BUILDDIR/nginx
-NGINXVERSION=1.5.10
+NGINXVERSION=1.6.2
 $WGET http://nginx.org/download/nginx-${NGINXVERSION}.tar.gz || (echo "download failed"; exit 1)
 tar -xvzf nginx-${NGINXVERSION}.tar.gz
 cd nginx-${NGINXVERSION}/
