@@ -11,7 +11,7 @@ WGET='wget -nv --no-check-certificate'
 
 # pagespeed module
 cd $BUILDDIR
-NPS_VERSION=1.9.32.3
+NPS_VERSION=1.9.32.4
 $WGET https://github.com/pagespeed/ngx_pagespeed/archive/release-${NPS_VERSION}-beta.zip || (echo "download failed"; exit 1)
 unzip release-${NPS_VERSION}-beta.zip
 mv ngx_pagespeed-release-${NPS_VERSION}-beta pagespeed
@@ -21,7 +21,7 @@ tar -xzvf ${NPS_VERSION}.tar.gz # expands to psol/
 
 # headers more module
 cd $BUILDDIR
-$WGET https://github.com/agentzh/headers-more-nginx-module/archive/v0.24.tar.gz || (echo "download failed"; exit 1)
+$WGET https://github.com/openresty/headers-more-nginx-module/archive/v0.261.tar.gz || (echo "download failed"; exit 1)
 tar -xvzf v0.24.tar.gz
 mv headers-more-nginx-module-0.24 headers-more
 
@@ -31,7 +31,7 @@ chown -R root:root $BUILDDIR
 # build nginx
 mkdir -p $BUILDDIR/nginx
 cd $BUILDDIR/nginx
-NGINXVERSION=1.6.2
+NGINXVERSION=1.9.2
 $WGET http://nginx.org/download/nginx-${NGINXVERSION}.tar.gz || (echo "download failed"; exit 1)
 tar -xvzf nginx-${NGINXVERSION}.tar.gz
 cd nginx-${NGINXVERSION}/
