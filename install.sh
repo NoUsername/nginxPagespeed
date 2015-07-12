@@ -1,8 +1,5 @@
 #!/bin/bash
 
-# install dependencies
-apt-get -y install build-essential zlib1g-dev libpcre3 libpcre3-dev libbz2-dev libssl-dev tar unzip wget  
-
 BUILDDIR=/var/build/nginx
 rm -r $BUILDDIR
 mkdir -p $BUILDDIR
@@ -21,9 +18,11 @@ tar -xzvf ${NPS_VERSION}.tar.gz # expands to psol/
 
 # headers more module
 cd $BUILDDIR
-$WGET https://github.com/openresty/headers-more-nginx-module/archive/v0.261.tar.gz || (echo "download failed"; exit 1)
-tar -xvzf v0.24.tar.gz
-mv headers-more-nginx-module-0.24 headers-more
+HM_FILENAME=v0.261.tar.gz
+HM_DIRNAME=headers-more-nginx-module-0.261
+$WGET https://github.com/openresty/headers-more-nginx-module/archive/${HM_FILENAME} || (echo "download failed"; exit 1)
+tar -xvzf ${HM_FILENAME}
+mv ${HM_DIRNAME} headers-more
 
 # fix permissions
 chown -R root:root $BUILDDIR
