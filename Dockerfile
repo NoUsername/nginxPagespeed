@@ -11,5 +11,6 @@ RUN			bash /opt/install.sh
 RUN			printf "\n\ndaemon off;\n" >> /etc/nginx/nginx.conf
 ADD			pagespeedBaseConf.conf /etc/nginx/pageSpeed
 ADD			pagespeedBaseConf.conf /opt/
-CMD			nginx
+
+ENTRYPOINT	/usr/sbin/nginx
 EXPOSE      80
